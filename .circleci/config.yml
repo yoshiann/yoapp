@@ -6,25 +6,25 @@ jobs:
       image: circleci/classic:edge
     steps:
       - checkout
-      - run:
-          name: Dockerコンテナのビルド
-          command: docker-compose build
-      - run:
-          name: Dockerコンテナの起動
-          command: docker-compose up -d
-      - run:
-          name: db接続を待機
-          command: sleep 30
-      - run:
-          name: データベースのセットアップ1
-          command: docker-compose exec prod bundle exec rake db:create
-      - run:
-          name: データベースのセットアップ2
-          command: docker-compose exec prod bundle exec rake db:migrate
-      - run:
-          name: テスト
-          command: docker-compose exec prod bundle exec rake test 
-
+      #- run:
+      #    name: Dockerコンテナのビルド
+      #    command: docker-compose build
+      #- run:
+      #    name: Dockerコンテナの起動
+      #    command: docker-compose up -d
+      #- run:
+      #    name: db接続を待機
+      #    command: sleep 30
+      #- run:
+      #    name: データベースのセットアップ1
+      #    command: docker-compose exec prod bundle exec rake db:create
+      #- run:
+      #    name: データベースのセットアップ2
+      #    command: docker-compose exec prod bundle exec rake db:migrate
+      #- run:
+      #    name: テスト
+      #    command: docker-compose exec prod bundle exec rake test 
+#
   deploy:
     machine:
       image: circleci/classic:edge
@@ -32,7 +32,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints: 
-            - d4:f0:5a:b4:fc:75:e0:46:0f:a7:07:92:80:c0:30:27
+            - 33:36:12:55:1d:e8:79:3e:43:b6:07:be:c4:19:3f:ad
       - run: ssh ${SSH_USER}@${SSH_HOST} 'cd ~/yoapp && git fetch origin main && git reset --hard origin/main'
 
 workflows:
