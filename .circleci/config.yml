@@ -33,7 +33,6 @@ jobs:
       - add_ssh_keys:
           fingerprints: 
             - d4:f0:5a:b4:fc:75:e0:46:0f:a7:07:92:80:c0:30:27
-      - run: chmod 400 ~/.ssh/config
       - run: ssh ${SSH_USER}@${SSH_HOST} 'cd ~/yoapp && git fetch origin main && git reset --hard origin/main'
 
 workflows:
