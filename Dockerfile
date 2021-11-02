@@ -3,12 +3,12 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update -qq \
     && apt-get install -y nodejs yarn \
-    && mkdir /yapp
-WORKDIR /yapp
-COPY Gemfile /yapp/Gemfile
-COPY Gemfile.lock /yapp/Gemfile.lock
+    && mkdir /yoapp
+WORKDIR /yoapp
+COPY Gemfile /yoapp/Gemfile
+COPY Gemfile.lock /yoapp/Gemfile.lock
 RUN bundle install
-COPY . /yapp
+COPY . /yoapp
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh

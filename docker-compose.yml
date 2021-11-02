@@ -12,23 +12,23 @@ services:
   prod:
     build: .
     volumes:
-      - .:/yapp
-      - public-data:/yapp/public
-      - tmp-data:/yapp/tmp
-      - log-data:/yapp/log
+      - .:/yoapp
+      - public-data:/yoapp/public
+      - tmp-data:/yoapp/tmp
+      - log-data:/yoapp/log
     ports:
       - "3000:3000"
     depends_on:
       - db
     stdin_open: true
     tty: true
-    command: bundle exec puma -C config/puma.rb
+    command: bundle exec rails s
   nginx:
     build:
       context: ./nginx
     volumes:
-      - public-data:/yapp/public
-      - tmp-data:/yapp/tmp
+      - public-data:/yoapp/public
+      - tmp-data:/yoapp/tmp
     ports:
       - 80:80
     depends_on:
